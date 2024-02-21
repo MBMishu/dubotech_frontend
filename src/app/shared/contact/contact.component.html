@@ -1,0 +1,85 @@
+<div class="relative bg-info-100 overflow-hidden">
+  <div
+    class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
+  >
+    <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
+          <div class="md:col-span-2">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Name</mat-label>
+              <input matInput type="text" formControlName="name" />
+            </mat-form-field>
+          </div>
+          <div class="md:col-span-2">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Email</mat-label>
+              <input matInput type="text" formControlName="email" />
+            </mat-form-field>
+          </div>
+          <div class="md:col-span-2">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Number</mat-label>
+              <input matInput type="number" formControlName="number" />
+            </mat-form-field>
+          </div>
+          <div class="md:col-span-1">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Company Name</mat-label>
+              <input matInput type="text" formControlName="companyName" />
+            </mat-form-field>
+          </div>
+          <div class="md:col-span-1">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Country</mat-label>
+              <input matInput type="text" formControlName="country" />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="grid grid-cols-1">
+          <div>
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label> Subject</mat-label>
+              <input matInput type="text" formControlName="subject" />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Message</mat-label>
+              <textarea
+                matInput
+                name="address"
+                id=""
+                formControlName="msg"
+                rows="6"
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 text-center">
+          <p class="font-thin">
+            DuboTech is committed to protecting and respecting your privacy, and
+            we’ll only use your personal information to provide the products and
+            services you requested from us.
+          </p>
+        </div>
+
+        <div class="md:col-span-2 text-center">
+          <button
+            mat-flat-button
+            type="submit"
+            [disabled]="!addForm.valid"
+            class="w-fit rounded-md border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm  {{
+              !addForm.valid
+                ? 'cursor-not-allowed '
+                : 'bg-info-600 hover:bg-info-700'
+            }}"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<!-- Angular Material Form -->
+<div class="flex justify-center items-center h-screen">
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="large"
+    color="#fff"
+    type="square-jelly-box"
+    [fullScreen]="true"
+  >
+    <p style="color: white">Saving...</p>
+  </ngx-spinner>
+
+  <mat-card class="p-6 max-w-5xl w-full">
+    <mat-card-title class="text-3xl font-semibold mb-6"
+      >Register</mat-card-title
+    >
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- First Row -->
+      <div class="flex mb-4">
+        <!-- First Name Input -->
+        <mat-form-field appearance="fill" class="w-full mr-2">
+          <mat-label>First Name</mat-label>
+          <input matInput type="text" formControlName="firstName" />
+        </mat-form-field>
+
+        <!-- Last Name Input -->
+        <mat-form-field appearance="fill" class="w-full ml-2">
+          <mat-label>Last Name</mat-label>
+          <input matInput type="text" formControlName="lastName" />
+        </mat-form-field>
+      </div>
+
+      <!-- Second Row -->
+      <div class="flex mb-4">
+        <!-- Username Input -->
+        <mat-form-field appearance="fill" class="w-full mr-2">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username" />
+        </mat-form-field>
+
+        <!-- Email Input -->
+        <mat-form-field appearance="fill" class="w-full ml-2">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" />
+        </mat-form-field>
+      </div>
+
+      <!-- Third Row -->
+      <div class="flex mb-4">
+        <!-- Password Input -->
+        <mat-form-field appearance="fill" class="w-full mr-2">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+
+        <!-- Confirm Password Input -->
+        <mat-form-field appearance="fill" class="w-full ml-2">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirm_password" />
+          <mat-error *ngIf="registerForm.hasError('passwordMismatch')"
+            >Passwords do not match</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        mat-flat-button
+        type="submit"
+        [disabled]="!registerForm.valid"
+        class="w-full rounded-md border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm {{
+          !registerForm.valid
+            ? 'cursor-not-allowed'
+            : 'bg-info-800 hover:bg-info-700'
+        }}"
+      >
+        Register
+      </button>
+    </form>
+
+    <!-- Login Link -->
+    <div class="mt-2 text-sm text-gray-600">
+      <p>
+        Already have an account?
+        <a routerLink="/admin">Login here</a>
+      </p>
+    </div>
+  </mat-card>
+</div>

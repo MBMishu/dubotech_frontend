@@ -1,0 +1,110 @@
+<footer>
+    <div class="relative bg-info-800 overflow-hidden">
+        <!-- Bubbles -->
+        <div class="bubbles">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+
+        <div class="flex flex-col md:flex-row space-y-7 justify-between max-w-7xl mx-auto px-4 py-8 relative z-20">
+            <!-- Column 1: Logo and Address -->
+            <div class="flex flex-col items-start">
+                <!-- Your logo here -->
+                <img src="{{ contact.logo_white }}" alt="Logo" class="w-auto h-16 mb-4" />
+                <address class="text-white">
+          {{ contact.name }} Headquarter
+          <br />
+          {{ contact.address }}
+          <br />
+          <br />
+          Phone: {{ contact.support_number }}<br />
+          Email: {{ contact.support_email }}
+        </address>
+            </div>
+
+            <!-- Column 2: Services -->
+            <div class="flex flex-col items-start">
+                <h2 class="text-white font-bold mb-4">Services</h2>
+                <ul>
+                    <li>
+                        <a routerLink="/inspection" class="text-white hover:underline">Inspection</a
+            >
+          </li>
+          <li>
+            <a routerLink="/tourism" class="text-white hover:underline"
+              >Tourism</a
+            >
+          </li>
+          <!-- Add more services as needed -->
+        </ul>
+      </div>
+
+      <!-- Column 3: About Us Link -->
+      <div class="flex flex-col items-start">
+        <h2 class="text-white font-bold mb-4">About Us</h2>
+        <a routerLink="/about-us" class="text-white hover:underline"
+          >Our Story</a
+        >
+        <a
+          routerLink="/about-us"
+          fragment="vision"
+          class="text-white hover:underline"
+          >Our Vision</a
+        >
+        <a
+          routerLink="/about-us"
+          fragment="team"
+          class="text-white hover:underline"
+          >Our Team</a
+        >
+        <a
+          routerLink="/about-us"
+          fragment="choose"
+          class="text-white hover:underline"
+          >Why Choose Us</a
+        >
+        <a routerLink="/contact-us" class="text-white hover:underline"
+          >Contact us</a
+        >
+      </div>
+    </div>
+
+    <!-- Footer Bottom: Developed By, Social Media Links -->
+    <div class="bg-info-900 relative z-20">
+      <div
+        class="max-w-7xl mx-auto px-4 py-4 z-20 text-white font-thin flex justify-between items-center"
+      >
+        <p>
+          &copy; {{ todayDate }} || Developed by
+          <a href="https://mbmishu.github.io/#/" class="text-warning"
+            >Masum Billah</a
+          >
+        </p>
+        <!-- Social Media Links -->
+        <div class="flex space-x-4">
+          <a
+            href="{{ contact.facebbok }}"
+            target="_blank"
+            class="text-white text-lg bg-info-700 p-2 hover:text-gray-300"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+                        <a href="{{ contact.instragram }}" target="_blank" class="text-white hover:text-gray-300 text-lg bg-info-700 p-2">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="{{ contact.linkedin }}" target="_blank" class="text-white hover:text-gray-300 text-lg bg-info-700 p-2">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</footer>

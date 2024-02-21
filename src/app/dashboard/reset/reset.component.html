@@ -1,0 +1,56 @@
+<!-- Angular Material Form -->
+<div class="flex justify-center items-center h-screen">
+  <ngx-spinner
+    bdColor="rgba(0, 0, 0, 0.8)"
+    size="large"
+    color="#fff"
+    type="square-jelly-box"
+    [fullScreen]="true"
+  >
+    <p style="color: white">Saving...</p>
+  </ngx-spinner>
+
+  <mat-card class="p-6 max-w-md w-full">
+    <mat-card-title class="text-3xl font-semibold mb-6"
+      >Reset Password</mat-card-title
+    >
+    <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+      <!-- Password Input -->
+      <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+      </mat-form-field>
+
+      <!-- Confirm Password Input -->
+      <mat-form-field appearance="fill" class="w-full mb-4">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirm_password" />
+        <mat-error *ngIf="resetForm.hasError('passwordMismatch')"
+          >Passwords do not match</mat-error
+        >
+      </mat-form-field>
+
+      <!-- Submit Button -->
+      <button
+        mat-flat-button
+        type="submit"
+        [disabled]="!resetForm.valid"
+        class="w-full rounded-md border border-transparent px-6 py-3 text-base font-medium text-white shadow-sm {{
+          !resetForm.valid
+            ? 'cursor-not-allowed'
+            : 'bg-info-600 hover:bg-info-700'
+        }}"
+      >
+        Reset Password
+      </button>
+    </form>
+
+    <!-- Login Link -->
+    <div class="mt-2 text-sm text-gray-600">
+      <p>
+        Remembered your password?
+        <a routerLink="/admin">Login here</a>
+      </p>
+    </div>
+  </mat-card>
+</div>
