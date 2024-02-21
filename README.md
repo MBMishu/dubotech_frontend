@@ -1,27 +1,64 @@
-# DubotechFrontend
+<h1 align="center" id="title">DuboTech Frontend</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+<p align="center"><img src="https://socialify.git.ci/MBMishu/dubotech_frontend/image?font=Source%20Code%20Pro&amp;forks=1&amp;issues=1&amp;logo=https%3A%2F%2Fdubotech.com%2Fassets%2Fimg%2Flogo.png&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;pulls=1&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
 
-## Development server
+<h2>🚀 Demo</h2>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[https://dubotech.com/](https://dubotech.com/)
 
-## Code scaffolding
+<h2>Project Screenshots:</h2>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b1.png?raw=true" alt="project-screenshot" width="400" height="400/">
 
-## Build
+<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b2.png?raw=true" alt="project-screenshot" width="400" height="400/">
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<h2>🧐 Features</h2>
 
-## Running unit tests
+Here're some of the project's best features:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- lazy loading
+- angular-express
+- Admin Dashboard
 
-## Running end-to-end tests
+<h2>🛠️ Installation Steps:</h2>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<p>1. Clone the project. This will download the GitHub respository files onto your local machine.</p>
 
-## Further help
+```
+git@github.com:MBMishu/dubotech_frontend.git
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<p>2. Install dependencies</p>
+
+```
+npm i
+```
+
+<p>3. Development server</p>
+
+```
+ng serve -o
+```
+
+<p>4. Navigate to Home</p>
+
+```
+http://localhost:4200/
+```
+
+<p>5. Navigate to DashBoard</p>
+
+```
+http://localhost:4200/admin
+```
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+- Angular 15
+- Tailwind css
+- Angular Material
+- angular-express
+- lazyload module
+- Express
