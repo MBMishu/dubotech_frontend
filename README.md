@@ -8,9 +8,9 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b1.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b1.png?raw=true" alt="project-screenshot" width="50%" height="400/">
 
-<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b2.png?raw=true" alt="project-screenshot" width="400" height="400/">
+<img src="https://github.com/MBMishu/dubotech_frontend/blob/main/b2.png?raw=true" alt="project-screenshot" width="50%" height="400/">
 
 <h2>🧐 Features</h2>
 

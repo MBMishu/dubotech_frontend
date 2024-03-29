@@ -22,11 +22,8 @@ export class ContactComponent implements OnInit {
     this.addForm = this.formbuilder.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      number: ['', Validators.required],
-      companyName: [''],
-      country: ['', Validators.required],
-      subject: ['', Validators.required],
       msg: ['', Validators.required],
+      subject: ['', Validators.required],
     });
   }
 
@@ -39,9 +36,6 @@ export class ContactComponent implements OnInit {
         sub: this.addForm.value.subject,
         sender_name: this.addForm.value.name,
         sender_email: this.addForm.value.email,
-        sender_number: this.addForm.value.number,
-        company: this.addForm.value.companyName,
-        country: this.addForm.value.country,
         message: this.addForm.value.msg,
       });
 
