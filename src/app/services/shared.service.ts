@@ -4,255 +4,176 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieServiceService } from './cookie-service.service';
+import { v4 as uuidv4 } from 'uuid'; // Import UUID
 
 @Injectable({
   providedIn: 'root',
 })
 export class SharedService {
-  readonly APIUrl = 'https://api.dubotech.com/api';
+  readonly DuburiAPIUrl = 'https://admin.bracu-duburi.com/api';
+  readonly DuburiMediaUrl = 'https://admin.bracu-duburi.com';
 
-  readonly MediaUrl = 'https://api.dubotech.com';
+  readonly ShopAPIUrl = 'https://admin.dubotech.com/api';
+  readonly BackendAPIUrl = 'https://admin.dubotech.com/api';
+  readonly MediaAPIUrl = 'https://admin.dubotech.com';
+  // readonly ShopAPIUrl = 'http://127.0.0.1:8000/api';
+  // readonly BackendAPIUrl = 'http://127.0.0.1:8000/api';
+  // readonly MediaAPIUrl = 'http://127.0.0.1:8000';
+
+  private sessionCookieKey = 'sessionid';
+  private cartCountSubject = new BehaviorSubject<number>(0); // Initialize with 0
+  cartCount$ = this.cartCountSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private cookieService: CookieService,
     private cookieService_doc: CookieServiceService
-  ) {}
+  ) {
+    this.checkAndCreateSession(); // Ensure session is created
+    this.refreshCartCount();
+  }
 
-  isLoggedIn$ = new BehaviorSubject<boolean>(false);
-  isAdmin$ = new BehaviorSubject<boolean>(false);
-  isSuperAdmin$ = new BehaviorSubject<boolean>(false);
+  // Ensure session ID is created and stored in cookies
+  private checkAndCreateSession() {
+    if (!this.cookieService.check(this.sessionCookieKey)) {
+      const sessionId = uuidv4(); // Generate a UUID as session ID
+      this.cookieService.set(this.sessionCookieKey, sessionId, 30); // Store session ID in cookie, valid for 30 days
+    }
+  }
+
+  // Fetch session ID from cookies
+  private getSessionId(): string | null {
+    return this.cookieService.get(this.sessionCookieKey);
+  }
+
+  // Method to refresh the cart count and emit updates
+  private refreshCartCount() {
+    this.getUserCart().subscribe((data) => {
+      const count = data['total_items'];
+      this.cartCountSubject.next(count); // Emit new cart count
+    });
+  }
+
+  getDuburiMediaUrl() {
+    return this.DuburiMediaUrl;
+  }
 
   getMediaUrl() {
-    return this.MediaUrl;
+    return this.MediaAPIUrl;
+  }
+  getDuburiNews(): Observable<any[]> {
+    return this.http.get<any[]>(this.DuburiAPIUrl + '/InNewsList/');
   }
 
-  getBlog(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/blog/');
+  getNews(): Observable<any[]> {
+    return this.http.get<any[]>(this.BackendAPIUrl + '/news/');
   }
 
-  getGallery(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/gallery/');
-  }
   getTeam(): Observable<any[]> {
-    return this.http.get<any[]>(this.APIUrl + '/team/');
+    return this.http.get<any[]>(this.BackendAPIUrl + '/all-team/');
+  }
+  getBodTeam(): Observable<any[]> {
+    return this.http.get<any[]>(this.BackendAPIUrl + '/bod-team/');
   }
 
-  // register part
-  registerService(registerObj: any): Observable<any[]> {
-    return this.http.post<any[]>(this.APIUrl + '/auth/register/', registerObj);
+  getAllProducts(): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + '/products/');
+  }
+  getProductsById(slug: string): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + `/products/${slug}`);
+  }
+  getCategoryProductsById(slug: string): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + `/category/${slug}`);
+  }
+  getCategory(): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + `/category/`);
   }
 
-  loginService(loginObj: any): Observable<any[]> {
-    return this.http.post<any[]>(this.APIUrl + '/auth/login/', loginObj).pipe(
-      tap((response) => {
-        if (
-          response['status'] === 200 &&
-          response['data'] &&
-          response['data'].roles
-        ) {
-          const isAdmin = this.checkAdminRole(response['data'].roles);
-          const isSuperAdmin = this.checkSuperAdminRole(response['data'].roles);
+  addToCart(slug: string, item: FormData): Observable<any[]> {
+    // Fetch session ID from cookies
+    const sessionId = this.getSessionId();
 
-          this.isLoggedIn$.next(true);
-
-          if (isSuperAdmin) {
-            // User has admin or super admin role
-            this.isSuperAdmin$.next(true);
-          } else {
-            // User does not have admin or super admin role
-            this.isSuperAdmin$.next(false);
-          }
-
-          if (!!this.cookieService_doc.getCookie('mi$hu_i$d')) {
-            this.cookieService_doc.deleteCookie('mi$hu_i$d');
-          }
-          if (!!this.cookieService_doc.getCookie('mi$hu_tok$en')) {
-            this.cookieService_doc.deleteCookie('mi$hu_tok$en');
-          }
-
-          this.cookieService_doc.setCookie('mi$hu_i$d', response['data'].id);
-          this.cookieService_doc.setCookie(
-            'mi$hu_tok$en',
-            response['data'].token
-          );
-        }
-      })
-    );
+    if (sessionId) {
+      // Include session ID in the request header
+      const headers = new HttpHeaders({
+        'X-Session-ID': sessionId,
+      });
+      return this.http
+        .post<any[]>(`${this.ShopAPIUrl}/add-cart/${slug}`, item, { headers })
+        .pipe(
+          tap(() => this.refreshCartCount()) // Refresh cart count after adding item
+        );
+    }
+    return this.http.post<any[]>(this.ShopAPIUrl + `/add-cart/${slug}`, item);
   }
+  getUserCart(): Observable<any[]> {
+    const sessionId = this.getSessionId();
 
-  private checkAdminRole(roles: string[]): boolean {
-    return roles.some((role) => role['role'] === 'admin'); // Adjust based on your actual role naming
-  }
-
-  private checkSuperAdminRole(roles: string[]): boolean {
-    return roles.some((role) => role['role'] === 'super_admin');
-  }
-  isLoggedIn() {
-    return !!this.cookieService_doc.getCookie('mi$hu_i$d');
-  }
-
-  logoutService() {
-    this.cookieService_doc.deleteCookie('mi$hu_tok$en');
-    this.cookieService_doc.deleteCookie('mi$hu_i$d');
-    this.isLoggedIn$.next(false);
-    this.isSuperAdmin$.next(false);
-
-    return true;
-  }
-
-  // forget pass part
-  forgetPasswordService(loginObj: any): Observable<any[]> {
-    return this.http.post<any[]>(this.APIUrl + '/auth/send-email/', loginObj);
-  }
-
-  // rest password part
-  ResetPasswordService(loginObj: any): Observable<any[]> {
-    return this.http.post<any[]>(
-      this.APIUrl + '/auth/reset-password/',
-      loginObj
-    );
-  }
-
-  getAccessTokenFromCookie(): string {
-    const cookieValue = this.cookieService_doc.getCookie('mi$hu_tok$en');
-
-    if (cookieValue === null) {
-      this.isLoggedIn$.next(false);
-      throw new Error('Access token cookie not found');
+    if (sessionId) {
+      // Include session ID in the request header
+      const headers = new HttpHeaders({
+        'X-Session-ID': sessionId,
+      });
+      return this.http.get<any[]>(this.ShopAPIUrl + '/cart/', { headers });
     }
 
-    return cookieValue;
+    return this.http.get<any[]>(this.ShopAPIUrl + '/cart/');
   }
-
-  // add to blog list
-  addBlog(item: any): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.post<any[]>(this.APIUrl + '/blog/', item, { headers });
+  getCartById(slug: string): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + `/cart/${slug}`);
   }
-  // delete to blog list
-  deleteBlog(blogId: string): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
+  removeCartItems(slug: string): Observable<any[]> {
+    const sessionId = this.getSessionId();
 
-    return this.http.delete<any[]>(this.APIUrl + `/blog/${blogId}`, {
-      headers,
-    });
+    if (sessionId) {
+      // Include session ID in the request header
+      const headers = new HttpHeaders({
+        'X-Session-ID': sessionId,
+      });
+      return this.http
+        .delete<any[]>(this.ShopAPIUrl + `/remove-cart/${slug}`, {
+          headers,
+        })
+        .pipe(
+          tap(() => this.refreshCartCount()) // Refresh cart count after adding item
+        );
+    }
+    return this.http.delete<any[]>(this.ShopAPIUrl + `/remove-cart/${slug}`);
   }
-  // update to blog list
-  updateBlog(blogId: string, item: FormData): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
+  placeOrder(item: FormData): Observable<any[]> {
+    const sessionId = this.getSessionId();
 
-    return this.http.put<any>(this.APIUrl + `/blog/${blogId}`, item, {
-      headers,
-    });
+    if (sessionId) {
+      // Include session ID in the request header
+      const headers = new HttpHeaders({
+        'X-Session-ID': sessionId,
+      });
+      return this.http
+        .post<any[]>(this.ShopAPIUrl + '/place-orders/', item, {
+          headers,
+        })
+        .pipe(
+          tap(() => this.refreshCartCount()) // Refresh cart count after adding item
+        );
+    }
+
+    return this.http.post<any[]>(this.ShopAPIUrl + '/place-orders/', item);
   }
+  getUserOrders(): Observable<any[]> {
+    const sessionId = this.getSessionId();
 
-  // add to gallery list
-  addGallery(item: any): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.post<any[]>(this.APIUrl + '/gallery/', item, { headers });
+    if (sessionId) {
+      // Include session ID in the request header
+      const headers = new HttpHeaders({
+        'X-Session-ID': sessionId,
+      });
+      return this.http.get<any[]>(this.ShopAPIUrl + '/user-orders/', {
+        headers,
+      });
+    }
+    return this.http.get<any[]>(this.ShopAPIUrl + '/user-orders/');
   }
-  deleteGallery(blogId: string): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.delete<any[]>(this.APIUrl + `/gallery/${blogId}`, {
-      headers,
-    });
-  }
-  // update to gallery list
-  updateGallery(blogId: string, item: FormData): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.put<any>(this.APIUrl + `/gallery/${blogId}`, item, {
-      headers,
-    });
-  }
-
-  addTeam(item: any): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.post<any[]>(this.APIUrl + '/team/', item, { headers });
-  }
-  // delete to gallery list
-  deleteTeam(blogId: string): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.delete<any[]>(this.APIUrl + `/team/${blogId}`, {
-      headers,
-    });
-  }
-  // update to gallery list
-  updateTeam(blogId: string, item: FormData): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.put<any>(this.APIUrl + `/team/${blogId}`, item, {
-      headers,
-    });
-  }
-
-  // get team list
-  getUserList(): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.get<any[]>(this.APIUrl + '/user/', { headers });
-  }
-
-  // delete to user list
-  deleteUser(blogId: string): Observable<any[]> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    return this.http.delete<any[]>(this.APIUrl + `/user/${blogId}`, {
-      headers,
-    });
-  }
-  // update to user list
-  updateUser(blogId: string): Observable<any> {
-    const headers = new HttpHeaders().set(
-      'Authorization',
-      `Bearer ${this.getAccessTokenFromCookie()}`
-    );
-
-    const item = {
-      isAdmin: true,
-    };
-
-    return this.http.put<any>(this.APIUrl + `/user/${blogId}`, item, {
-      headers,
-    });
+  getOrderById(slug: string): Observable<any[]> {
+    return this.http.get<any[]>(this.ShopAPIUrl + `/user-orders/${slug}`);
   }
 }

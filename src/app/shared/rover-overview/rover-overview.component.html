@@ -1,0 +1,35 @@
+<div class="relative overflow-hidden">
+  <!-- Content -->
+  <div
+    class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 relative"
+  >
+    <div class="max-w-2xl">
+      <p
+        class="text-4xl capitalize font-bold tracking-tight text-blue-800 sm:text-4xl"
+      >
+        DuboTech <br />
+        Underwater Rover
+      </p>
+      <p class="tracking-tight text-gray-800 text-lg text-justify font-thin">
+        The ultimate tool for professionals. Get the overview you need to
+        inspect your assets below the surface. Learn more about our rovers:
+        Tuna, Octopus and Hilsha.
+      </p>
+    </div>
+
+    <div class="mt-5">
+      <mat-tab-group>
+        <mat-tab label="Octopus 2.0" class="">
+          <ng-template matTabContent>
+            <app-octopus-overview></app-octopus-overview>
+          </ng-template>
+        </mat-tab>
+        <mat-tab label="Tuna 1.0">
+          <ng-template matTabContent>
+            <app-tuna-overview></app-tuna-overview>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

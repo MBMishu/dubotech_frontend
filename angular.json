@@ -29,18 +29,28 @@
               "src/assets/vendor/icofont/icofont.min.css",
               "node_modules/venobox/dist/venobox.css",
               "node_modules/sweetalert2/src/sweetalert2.scss",
-              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
-              "node_modules/ngx-spinner/animations/square-jelly-box.css"
+              "node_modules/ngx-spinner/animations/square-loader.css"
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "src/assets/vendor/wow.min.js",
               "node_modules/venobox/dist/venobox.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": ["sweetalert2"]
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": true
+                },
+                "fonts": {
+                  "inline": true
+                }
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -106,6 +116,7 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
               "outputHashing": "media"
             },
             "development": {

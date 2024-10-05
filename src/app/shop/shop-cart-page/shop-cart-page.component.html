@@ -1,0 +1,167 @@
+<div
+  class="relative bg-blue-800 isolate px-6 lg:px-8 min-h-[10vh] bg-cover bg-center flex items-center justify-center"
+></div>
+<section>
+  <div class="relative overflow-hidden">
+    <div
+      class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8 relative"
+    >
+      <p
+        class="text-4xl capitalize font-semibold tracking-tight text-blue-800 sm:text-4xl"
+      >
+        DuboTech cart
+      </p>
+      <a
+        routerLink="/shop"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-500 mb-4 inline-block"
+        >Back to Shop page</a
+      >
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- product details -->
+        <div class="md:col-span-2">
+          <ngx-spinner
+            bdColor="rgba(0,0,0,0)"
+            size="medium"
+            color="#1e40af"
+            type="square-loader"
+            [fullScreen]="false"
+          ></ngx-spinner>
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white">
+              <thead>
+                <tr>
+                  <th class="py-2 px-4 border-b text-left">Product</th>
+                  <th class="py-2 px-4 border-b text-left">Price</th>
+                  <th class="py-2 px-4 border-b text-left">Quantity</th>
+                  <th class="py-2 px-4 border-b text-left">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody *ngIf="List['items'] && List['items'].length > 0">
+                <ng-container *ngFor="let item of List['items']">
+                  <tr>
+                    <td class="py-4 px-4 border-b flex items-center">
+                      <button
+                        matTooltip="Remove Item"
+                        class="text-red-500 hover:text-red-700 mr-4"
+                        (click)="removeCartItem(item.id)"
+                      >
+                        <svg
+                          class="w-6 h-6"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M10 8.586l4.707-4.707a1 1 0 011.414 1.414L11.414 10l4.707 4.707a1 1 0 01-1.414 1.414L10 11.414l-4.707 4.707a1 1 0 01-1.414-1.414L8.586 10 3.879 5.293a1 1 0 011.414-1.414L10 8.586z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+
+                      <img
+                        [defaultImage]="
+                          'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                        "
+                        lazyLoad="{{ item['product'].image }}"
+                        class="object-cover w-12 h-12 mr-4"
+                        alt=""
+                      />
+                      <a
+                        routerLink="/shop/product/{{ item['product'].slug }}"
+                        class="text-blue-800"
+                        >{{ item["product"].name }}</a
+                      >
+                    </td>
+                    <td class="py-4 px-4 border-b">
+                      $ {{ item["product"].price }}
+                    </td>
+                    <td class="py-4 px-4 border-b">
+                      <input
+                        type="number"
+                        placeholder="1"
+                        name="quantity"
+                        [(ngModel)]="item.quantity"
+                        (change)="onQuantityChange(item['product'].slug, item)"
+                        value="{{ item.quantity }}"
+                        min="1"
+                        class="w-16 border rounded text-center"
+                      />
+                    </td>
+                    <td class="py-4 px-4 border-b">
+                      $ {{ item.item_total_price }}
+                    </td>
+                  </tr>
+                </ng-container>
+              </tbody>
+              <tbody>
+                <tr *ngIf="List['items'] && List['items'].length == 0">
+                  <td class="py-4 px-4 border-b" colspan="4">
+                    <p class="text-center text-gray-500">
+                      No items in the cart
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="flex justify-start space-x-8 mt-6">
+            <button
+              (click)="shareCart(List.slug)"
+              matTooltip="Click here to copy link "
+              class="bg-blue-700 text-white text-lg px-4 py-2 rounded-md hover:bg-blue-800"
+            >
+              <i class="far fa-copy"></i> {{ button_text }}
+            </button>
+          </div>
+        </div>
+
+        <!-- cart total -->
+        <div class="md:col-span-1">
+          <p
+            class="text-4xl capitalize font-semibold tracking-tight sm:text-4xl"
+          >
+            Cart totals
+          </p>
+
+          <div class="flex flex-col space-y-5">
+            <div class="flex justify-between">
+              <p class="text-lg text-gray-500">Subtotal</p>
+              <p class="text-lg text-gray-500">
+                {{ List.total_price | currency : "$ " : "symbol" : "1.0-2" }}
+              </p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="flex justify-between">
+              <p class="text-lg text-gray-500">
+                Shipping
+                <span class="text-danger-500"
+                  >(will be calculated at checkout)</span
+                >
+              </p>
+              <p class="text-lg text-gray-500">$ ***</p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="flex justify-between">
+              <p class="text-lg text-gray-500">Total</p>
+              <p class="text-lg text-gray-500 font-semibold">
+                {{ List.subtotal_price | currency : "$ " : "symbol" : "1.0-2" }}
+              </p>
+            </div>
+            <mat-divider></mat-divider>
+            <button
+              routerLink="/shop/order"
+              matTooltip="Checkout"
+              class="bg-blue-800 text-white text-xl px-4 py-4 rounded-md hover:bg-blue-800"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

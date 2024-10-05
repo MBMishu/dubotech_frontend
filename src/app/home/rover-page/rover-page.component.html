@@ -7,8 +7,12 @@
     playsinline
     [muted]="true"
     class="absolute top-0 left-0 w-full h-full object-cover"
+    preload="none"
   >
-    <source src="assets/video/rover-mini_2.mp4" type="video/mp4" />
+    <source
+      src="https://ik.imagekit.io/dubotech/assets/video/tuna_1.mp4?updatedAt=1719836492626"
+      type="video/mp4"
+    />
   </video>
   <div class="absolute inset-0 bg-black opacity-70"></div>
   <div class="mx-auto max-w-4xl relative z-10">
@@ -23,31 +27,46 @@
   </div>
 </div>
 
+<app-rover-overview></app-rover-overview>
+
 <div class="relative bg-white overflow-hidden">
   <!-- Content -->
   <div
     class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
   >
     <!-- rover details -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-      <div class="md:col-span-7 my-auto">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-16">
+      <div class="md:col-span-5 my-auto">
         <p
           class="text-4xl capitalize font-semibold tracking-tight text-gray-800 sm:text-4xl"
         >
           DuboTech Underwater Rover
         </p>
         <p
-          class="text-4xl capitalize font-semibold tracking-tight text-info-700 sm:text-6xl"
+          class="text-4xl capitalize font-semibold tracking-tight text-blue-800 sm:text-6xl"
         >
           A.U.V.
         </p>
-        <img
-          src="assets/img/v4.png"
+        <!-- <img
+          src="https://ik.imagekit.io/dubotech/assets/img/v41_2.png?updatedAt=1719932774123"
           class="object-cover w-auto h-auto"
           alt=""
-        />
+        /> -->
+        <video
+          autoplay
+          loop
+          playsinline
+          [muted]="true"
+          class="w-full h-full object-cover rounded-xl shadow-xl"
+          preload="none"
+        >
+          <source
+            src="https://ik.imagekit.io/dubotech/assets/video/tuna_3.mp4?updatedAt=1720009687770"
+            type="video/mp4"
+          />
+        </video>
       </div>
-      <div class="md:col-span-5 my-auto">
+      <div class="md:col-span-7 my-auto">
         <div class="grid grid-cols-1 gap-y-4">
           <div>
             <p class="text-2xl font-semibold">
@@ -91,14 +110,14 @@
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
       <div class="md:col-span-5 text-center md:order-2">
         <img
-          src="assets/img/cpu.png"
+          src="https://ik.imagekit.io/dubotech/assets/img/cpu.png?updatedAt=1719836327531"
           class="object-cover w-auto h-auto"
           alt=""
         />
       </div>
       <div class="md:col-span-7 my-auto md:order-1">
         <p class="text-2xl font-semibold">Two Brains</p>
-        <p class="text-2xl font-semibold text-info-700">
+        <p class="text-2xl font-semibold text-blue-800">
           Unlimited Possibilities
         </p>
         <p class="text-lg">
@@ -107,6 +126,73 @@
           on the numerous sensor inputs. The parallelism of the GPU enables the
           best of machine learning algorithms to unlock autonomy.
         </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="relative bg-white overflow-hidden">
+  <!-- Content -->
+  <div
+    class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <div class="md:col-span-5 text-center">
+        <img
+          src="https://ik.imagekit.io/dubotech/assets/img/v41_grabber.png?updatedAt=1720046350727"
+          class="object-cover w-auto h-auto"
+          alt=""
+        />
+      </div>
+      <div class="md:col-span-7 my-auto">
+        <p class="text-2xl font-semibold">DuboTech's</p>
+        <p class="text-2xl font-semibold text-blue-800">Manipulator</p>
+        <p class="text-lg">
+          Our own design and custom CNC aluminum manipulator. A Dc motor is used
+          to push a rod which opens or closes the End effector. Current Sensor
+          is used to Determine whether the manipulator is open or closed. The DC
+          motor is housed inside a waterproof enclosure.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="relative bg-white overflow-hidden">
+  <!-- Content -->
+  <div
+    class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="md:col-span-1">
+        <div class="embed-container">
+          <iframe
+            title="Dubotech"
+            src="https://www.youtube.com/embed/vlZWLmhZR6A?si=HR0Ku94YZ4uYr7JF"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="md:col-span-1">
+        <div class="embed-container">
+          <iframe
+            title="Dubotech"
+            src="https://www.youtube.com/embed/EVzh3emCrtg?si=1TKd_W2AOfVEPnN4"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+      <div class="md:col-span-1">
+        <div class="embed-container">
+          <iframe
+            title="Dubotech"
+            src="https://www.youtube.com/embed/1JIHOpI0-K4?si=UdAJB3W85dtPnC1k"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     </div>
   </div>

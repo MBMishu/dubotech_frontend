@@ -1,3 +1,7 @@
 .active {
-  color: rgb(43 137 168) !important;
+  font-weight: 600 !important;
 }
+
+/* .active {
+  color: rgb(43 137 168) !important;
+} */

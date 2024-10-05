@@ -1,0 +1,23 @@
+/* mdc-tab-indicator--active */
+
+::ng-deep .mdc-tab--active {
+  @apply bg-blue-800;
+  @apply rounded-t-lg;
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label,
+::ng-deep .mat-mdc-tab-link .mdc-tab__text-label {
+  @apply font-bold;
+  @apply text-lg;
+}
+
+::ng-deep
+  .mat-mdc-tab:not(.mat-mdc-tab-disabled).mdc-tab--active
+  .mdc-tab__text-label,
+::ng-deep
+  .mat-mdc-tab-link:not(.mat-mdc-tab-disabled).mdc-tab--active
+  .mdc-tab__text-label {
+  @apply text-white;
+}
+
+/* mdc-tab mat-mdc-tab mat-mdc-focus-indicator ng-star-inserted mdc-tab--active mdc-tab-indicator--active */

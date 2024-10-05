@@ -1,5 +1,5 @@
 <div
-  class="relative bg-gray-700 isolate px-6 lg:px-8 mt-12 bg-cover bg-center"
+  class="relative bg-gray-700 isolate px-6 lg:px-8 bg-cover bg-center min-h-[70vh]"
   style="background-image: url('{{ path }}')"
 >
   <div class="absolute inset-0 bg-black opacity-40"></div>
@@ -30,7 +30,9 @@
         </li>
         <li>
           <div class="flex items-center">
-            <a routerLink="/blog" class="mr-2 text-sm font-medium text-white"
+            <a
+              routerLink="/about/blog"
+              class="mr-2 text-sm font-medium text-white"
               >Blog</a
             >
             <svg
@@ -48,7 +50,7 @@
 
         <li class="text-sm">
           <a
-            [routerLink]="['/blog_details', BlogList['_id']]"
+            [routerLink]="['/about/blog_details', BlogList['_id']]"
             aria-current="page"
             class="font-medium text-white hover:text-info-900"
             >Blog Details</a
@@ -73,9 +75,9 @@
       class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:max-w-7xl lg:px-8 relative shadow-md rounded-md"
     >
       <ngx-spinner
-        bdColor="rgba(0, 0, 0, 0.8)"
+        bdColor="rgba(0, 0, 0, 0.0)"
         size="large"
-        color="#fff"
+        color="rgb(30 64 175)"
         type="square-jelly-box"
         [fullScreen]="false"
       >
@@ -83,8 +85,8 @@
       </ngx-spinner>
 
       <div class="p-6">
-        <h1 class="text-3xl font-semibold text-info-700 mb-4">
-          <a [routerLink]="['/blog_details', BlogList['_id']]">{{
+        <h1 class="text-3xl font-semibold text-blue-800 mb-4">
+          <a [routerLink]="['/about/blog_details', BlogList['_id']]">{{
             BlogList["name"]
           }}</a>
         </h1>

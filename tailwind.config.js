@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   important: true,
-  content: ["./src/**/*.{html,ts}"],
+  content: ["./src/**/*.{html,ts}", "./node_modules/flowbite/**/*.js"],
   theme: {
     fontFamily: {
       sans: ["Graphik", "sans-serif"],
@@ -13,5 +13,6 @@ module.exports = {
     // ...
     require("@tailwindcss/aspect-ratio"),
     require("tw-elements/dist/plugin.cjs"),
+    require("flowbite/plugin"), // add this line
   ],
 };

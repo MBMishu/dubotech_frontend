@@ -18,8 +18,8 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./about-page.component.css'],
 })
 export class AboutPageComponent implements OnInit {
-  teamList = team;
   List: any[] = [];
+  BODList: any[] = [];
   Media: string;
 
   constructor(
@@ -33,7 +33,7 @@ export class AboutPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.Media = this.service.getMediaUrl();
+    this.refreshBODList();
     this.refreshList();
 
     this.title.setTitle('Dubotech | About Us');
@@ -52,20 +52,18 @@ export class AboutPageComponent implements OnInit {
     slide.loading = false; // Set loading to false for the individual image when it is loaded
   }
 
-  getLazyLoadImagePath(picPath: string): string {
-    if (picPath === 'https://bracu-duburi.com/assets/img/v4.png') {
-      return picPath;
-    } else {
-      const baseUrl = this.Media; // Replace with your actual base URL
-      return `${baseUrl}/${picPath}`;
-    }
+  refreshBODList() {
+    this.spinner.show();
+    this.service.getBodTeam().subscribe((data) => {
+      this.BODList = data;
+      this.spinner.hide();
+    });
   }
-
   refreshList() {
     this.spinner.show();
     this.service.getTeam().subscribe((data) => {
+      this.List = data;
       this.spinner.hide();
-      this.List = data['data'].filter((team) => team.isFounder === true);
     });
   }
 }

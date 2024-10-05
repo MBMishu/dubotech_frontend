@@ -21,6 +21,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { NgxParallaxModule } from '@yoozly/ngx-parallax';
+import { TunaOverviewComponent } from './tuna-overview/tuna-overview.component';
+import { OctopusOverviewComponent } from './octopus-overview/octopus-overview.component';
+import { RoverOverviewComponent } from './rover-overview/rover-overview.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { NgxParallaxModule } from '@yoozly/ngx-parallax';
     SponsorComponent,
     WhyChooseUsComponent,
     ContactComponent,
+    TunaOverviewComponent,
+    OctopusOverviewComponent,
+    RoverOverviewComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +53,7 @@ import { NgxParallaxModule } from '@yoozly/ngx-parallax';
     MatSelectModule,
     MatTooltipModule,
     NgxParallaxModule,
+    MatTabsModule,
   ],
   exports: [
     NavbarComponent,
@@ -55,6 +63,9 @@ import { NgxParallaxModule } from '@yoozly/ngx-parallax';
     SponsorComponent,
     WhyChooseUsComponent,
     ContactComponent,
+    TunaOverviewComponent,
+    OctopusOverviewComponent,
+    RoverOverviewComponent,
   ],
 })
 export class SharedModule {}

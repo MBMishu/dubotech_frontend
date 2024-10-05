@@ -1,0 +1,9 @@
+.product-description img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-description a {
+  color: #007bff;
+  text-decoration: none;
+}

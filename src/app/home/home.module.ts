@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 
-import { HomePageComponent } from './home-page/home-page.component';
-
 import { AboutPageComponent } from './about-page/about-page.component';
 import { RoverPageComponent } from './rover-page/rover-page.component';
 import { InspectionPageComponent } from './inspection-page/inspection-page.component';
@@ -22,11 +20,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TourismPageComponent } from './tourism-page/tourism-page.component';
 import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.component';
+import { TunaComponent } from './tuna/tuna.component';
+import { NewsPageComponent } from './news-page/news-page.component';
+import { CookieService } from 'ngx-cookie-service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
-    HomePageComponent,
-
     AboutPageComponent,
     RoverPageComponent,
     InspectionPageComponent,
@@ -37,6 +40,8 @@ import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.
     NotFoundPageComponent,
     TourismPageComponent,
     BlogDetailsPageComponent,
+    TunaComponent,
+    NewsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -46,6 +51,12 @@ import { BlogDetailsPageComponent } from './blog-details-page/blog-details-page.
     NgxSpinnerModule,
     MatDividerModule,
     MatTooltipModule,
+    MatTabsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
+  providers: [CookieService],
 })
 export class HomeModule {}

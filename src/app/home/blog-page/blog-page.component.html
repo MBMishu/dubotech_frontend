@@ -1,6 +1,8 @@
 <div
-  class="relative bg-gray-700 isolate px-6 lg:px-8 mt-12 bg-cover bg-center"
-  style="background-image: url('assets/img/banner.png')"
+  class="relative bg-gray-700 isolate px-6 lg:px-8 bg-cover bg-center min-h-[35vh]"
+  style="
+    background-image: url('https://ik.imagekit.io/dubotech/assets/img/maritime_2.png?updatedAt=1722304163846');
+  "
 >
   <div
     class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
@@ -30,7 +32,7 @@
 
         <li class="text-sm">
           <a
-            routerLink="/blog"
+            routerLink="/about/blog"
             aria-current="page"
             class="font-medium text-white hover:text-info-900"
             >Blog</a
@@ -55,9 +57,9 @@
       class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8 relative"
     >
       <ngx-spinner
-        bdColor="rgba(0, 0, 0, 0.8)"
+        bdColor="rgba(0, 0, 0, 0.0)"
         size="large"
-        color="#fff"
+        color="rgb(30 64 175)"
         type="square-jelly-box"
         [fullScreen]="false"
       >
@@ -70,14 +72,16 @@
             class="max-w-md mx-auto bg-white shadow-md rounded-md overflow-hidden"
           >
             <img
-              [defaultImage]="'../assets/img/default.png'"
+              [defaultImage]="
+                'https://ik.imagekit.io/dubotech/assets/img/default.png'
+              "
               [lazyLoad]="getLazyLoadImagePath(item.blogImage)"
               alt="{{ item.name }}"
               class="w-full h-40 object-cover"
             />
             <div class="p-4">
-              <h2 class="text-xl font-semibold mb-2 hover:text-info-700">
-                <a [routerLink]="['/blog_details', item._id]">{{
+              <h2 class="text-xl font-semibold mb-2 hover:text-blue-800">
+                <a [routerLink]="['/about/blog_details', item._id]">{{
                   item.name
                 }}</a>
               </h2>
@@ -87,7 +91,7 @@
 
               <a
                 [routerLink]="['/blog_details', item._id]"
-                class="mt-4 inline-block text-info-700 hover:underline"
+                class="mt-4 inline-block text-blue-800 hover:underline"
                 >Read more</a
               >
             </div>

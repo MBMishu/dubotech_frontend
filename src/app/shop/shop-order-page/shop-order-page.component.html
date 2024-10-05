@@ -1,0 +1,232 @@
+<div
+  class="relative bg-blue-800 isolate px-6 lg:px-8 min-h-[10vh] bg-cover bg-center flex items-center justify-center"
+></div>
+<section>
+  <div class="relative overflow-hidden">
+    <div
+      class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8 relative"
+    >
+      <p
+        class="text-4xl capitalize font-semibold tracking-tight text-blue-800 sm:text-4xl"
+      >
+        Checkout
+      </p>
+      <a
+        routerLink="/shop"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-500 mb-4 inline-block"
+        >Back to Shop page</a
+      >
+
+      <div class="grid grid-cols-1 md:grid-cols-7 gap-8">
+        <!-- billing address -->
+        <div class="md:col-span-4">
+          <div class="rounded-md shadow-md p-2">
+            <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> First Name</mat-label>
+                    <input matInput type="text" formControlName="first_name" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('first_name')?.errors?.['required'] && addForm.get('first_name')?.touched"
+                    >
+                      First Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Last Name</mat-label>
+                    <input matInput type="text" formControlName="last_name" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('last_name')?.errors?.['required'] && addForm.get('last_name')?.touched"
+                    >
+                      Last Name is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-2">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Company Name</mat-label>
+                    <input matInput type="text" formControlName="company" />
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Email</mat-label>
+                    <input matInput type="text" formControlName="email" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('email')?.errors?.['required'] && addForm.get('email')?.touched"
+                    >
+                      Email is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Phone</mat-label>
+                    <input matInput type="text" formControlName="phone" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('phone')?.errors?.['required'] && addForm.get('phone')?.touched"
+                    >
+                      Phone is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="md:col-span-2">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Street Address</mat-label>
+                    <input matInput type="text" formControlName="address" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('address')?.errors?.['required'] && addForm.get('address')?.touched"
+                    >
+                      Street Address is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Country</mat-label>
+                    <mat-select formControlName="country">
+                      <mat-option
+                        *ngFor="let country of countries"
+                        [value]="country"
+                      >
+                        {{ country }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('country')?.errors?.['required'] && addForm.get('country')?.touched"
+                    >
+                      Country is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Town/city</mat-label>
+                    <input matInput type="text" formControlName="city" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('city')?.errors?.['required'] && addForm.get('city')?.touched"
+                    >
+                      Town/City is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> District/State</mat-label>
+                    <input matInput type="text" formControlName="state" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('state')?.errors?.['required'] && addForm.get('state')?.touched"
+                    >
+                      District/State is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="md:col-span-1">
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label> Zip Code</mat-label>
+                    <input matInput type="text" formControlName="zipcode" />
+                    <mat-error
+                      class="text-danger"
+                      *ngIf="addForm.get('zipcode')?.errors?.['required'] && addForm.get('zipcode')?.touched"
+                    >
+                      Zip Code is required
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="md:col-span-2">
+                  <button
+                    mat-flat-button
+                    type="submit"
+                    matTooltip="Place Order"
+                    class="w-full bg-blue-800 text-white text-xl px-4 py-4 rounded-md hover:bg-blue-800 {{
+                      !addForm.valid ? 'cursor-not-allowed ' : ''
+                    }}"
+                  >
+                    Place Order
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- cart total -->
+        <div class="md:col-span-3">
+          <ngx-spinner
+            bdColor="rgba(0,0,0,0)"
+            size="medium"
+            color="#1e40af"
+            type="square-loader"
+            [fullScreen]="false"
+          ></ngx-spinner>
+          <p
+            class="text-4xl capitalize font-semibold tracking-tight sm:text-4xl"
+          >
+            Order Summary
+          </p>
+
+          <div class="flex flex-col space-y-5">
+            <div class="flex justify-between">
+              <p class="text-lg font-bold text-gray-500">Product</p>
+              <p class="text-lg font-bold text-gray-500">Subtotal</p>
+            </div>
+            <mat-divider></mat-divider>
+            <ng-container *ngFor="let item of List['items']">
+              <div class="flex justify-between">
+                <p class="text-sm text-gray-500">
+                  {{ item["product"].name }} ×
+                  <span class="font-bold text-danger">{{ item.quantity }}</span>
+                </p>
+                <p class="text-lg text-gray-500">
+                  {{
+                    item.item_total_price | currency : "$ " : "symbol" : "1.0-2"
+                  }}
+                </p>
+              </div>
+            </ng-container>
+
+            <mat-divider></mat-divider>
+            <div class="flex justify-between">
+              <p class="text-lg text-gray-500 font-bold">Subtotal</p>
+              <p class="text-lg text-gray-500 font-bold">
+                {{ List.total_price | currency : "$ " : "symbol" : "1.0-2" }}
+              </p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="flex justify-between">
+              <p class="text-lg font-bold text-gray-500">Shipping</p>
+              <p class="text-lg font-bold text-gray-500">
+                {{
+                  List.shipping_charge | currency : "$ " : "symbol" : "1.0-2"
+                }}
+              </p>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="flex justify-between">
+              <p class="text-2xl text-blue-800">Total</p>
+              <p class="text-2xl text-blue-800 font-semibold">
+                {{ List.subtotal_price | currency : "$ " : "symbol" : "1.0-2" }}
+              </p>
+            </div>
+            <mat-divider></mat-divider>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

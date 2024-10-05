@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './home/not-found-page/not-found-page.component';
+import { FrontPageComponent } from './front-page/front-page.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: FrontPageComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'about',
     loadChildren: () => import('./home/home.module').then((M) => M.HomeModule),
   },
   {
-    path: 'admin',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((M) => M.DashboardModule),
+    path: 'shop',
+    loadChildren: () => import('./shop/shop.module').then((M) => M.ShopModule),
   },
   { path: '**', component: NotFoundPageComponent },
 ];

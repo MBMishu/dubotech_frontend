@@ -1,0 +1,103 @@
+<div
+  class="relative bg-gray-700 isolate px-6 lg:px-8 min-h-[75vh] bg-cover bg-center flex items-center justify-center"
+  style="
+    background-image: url('https://ik.imagekit.io/dubotech/assets/img/newsss.png?updatedAt=1720041907535');
+  "
+></div>
+
+<section id="team">
+  <div class="relative overflow-hidden">
+    <div
+      class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8 relative"
+    >
+      <ngx-spinner
+        bdColor="rgba(0,0,0,0)"
+        size="medium"
+        color="#1e40af"
+        type="square-loader"
+        [fullScreen]="false"
+      ></ngx-spinner>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <ng-container *ngFor="let slide of news_List">
+          <div class="grid grid-cols-5 gap-4 rounded-md shadow-md p-5">
+            <div class="col-span-1 mx-auto my-auto">
+              <img
+                [defaultImage]="
+                  'https://ik.imagekit.io/bracuduburiauv/assets/img/default.png'
+                "
+                [lazyLoad]="getLazyLoadImagePath(slide.image)"
+                alt="{{ slide.title }}"
+                class="object-cover w-auto"
+              />
+            </div>
+            <div class="col-span-4">
+              <div class="grid grid-cols-1">
+                <div>
+                  <p>
+                    <i class="far fa-calendar-alt text-blue-900"></i>
+                    <time datetime="2008-02-14 20:00"
+                      >&emsp; {{ slide.created_at }}</time
+                    >
+                  </p>
+                </div>
+                <div>
+                  <p class="text-xl font-semibold text-gray-800">
+                    {{ slide.title }}
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href="{{ slide.news_link }}"
+                    target="_blank"
+                    class="px-3.5 py-2.5 text-sm font-semibold text-white border rounded-full bg-blue-800"
+                    >Explore News <span aria-hidden="true">→</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngFor="let slide of List">
+          <div class="grid grid-cols-5 gap-4 rounded-md shadow-md p-5">
+            <div class="col-span-1 mx-auto my-auto">
+              <img
+                [defaultImage]="
+                  'https://ik.imagekit.io/bracuduburiauv/assets/img/default.png'
+                "
+                [lazyLoad]="getLazyLoadImagePath(slide.image)"
+                alt="{{ slide.name }}"
+                class="object-cover w-auto"
+              />
+            </div>
+            <div class="col-span-4">
+              <div class="grid grid-cols-1">
+                <div>
+                  <p>
+                    <i class="far fa-calendar-alt text-blue-900"></i>
+                    <time datetime="2008-02-14 20:00"
+                      >&emsp; {{ slide.date_created }}</time
+                    >
+                  </p>
+                </div>
+                <div>
+                  <p class="text-xl font-semibold text-gray-800">
+                    {{ slide.title }}
+                  </p>
+                </div>
+                <div>
+                  <a
+                    href="{{ slide.link }}"
+                    target="_blank"
+                    class="px-3.5 py-2.5 text-sm font-semibold text-white border rounded-full bg-blue-800"
+                    >Explore News <span aria-hidden="true">→</span></a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

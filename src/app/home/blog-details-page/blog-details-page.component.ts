@@ -38,13 +38,11 @@ export class BlogDetailsPageComponent implements OnInit {
     const currentUrl = this.location.path(true);
     const completeUrl = currentUrl;
 
-    this.Media = this.service.getMediaUrl();
-
     const slug = this.route.snapshot.paramMap.get('slug');
     if (slug != null) {
       // this.BlogId = Number(id);
       this.BlogSlug = slug;
-      this.showResult(completeUrl);
+      // this.showResult(completeUrl);
     }
 
     this.canonicalService.setCanonicalURL();
@@ -61,46 +59,47 @@ export class BlogDetailsPageComponent implements OnInit {
     if (picPath === 'https://bracu-duburi.com/assets/img/v4.png') {
       return picPath;
     } else {
-      const baseUrl = this.Media; // Replace with your actual base URL
+      // const baseUrl = this.Media; // Replace with your actual base URL
+      const baseUrl = 'https://ik.imagekit.io/dubotech'; // Replace with your actual base URL
 
       return `${baseUrl}/${picPath}`;
     }
   }
 
-  showResult(completeUrl: string) {
-    this.spinner.show();
-    this.service.getBlog().subscribe((data) => {
-      this.spinner.hide();
-      // this.BlogList = data.find((blog) => blog.slug === this.BlogSlug);
-      const foundBlog = data['data'].find((blog) => blog._id === this.BlogSlug);
+  // showResult(completeUrl: string) {
+  //   this.spinner.show();
+  //   this.service.getBlog().subscribe((data) => {
+  //     this.spinner.hide();
+  //     // this.BlogList = data.find((blog) => blog.slug === this.BlogSlug);
+  //     const foundBlog = data['data'].find((blog) => blog._id === this.BlogSlug);
 
-      if (foundBlog) {
-        this.BlogList = foundBlog;
+  //     if (foundBlog) {
+  //       this.BlogList = foundBlog;
 
-        this.path = `${this.Media}/${foundBlog.blogImage}`;
+  //       this.path = `https://ik.imagekit.io/dubotech/${foundBlog.blogImage}`;
 
-        this.title.setTitle(foundBlog.name);
+  //       this.title.setTitle(foundBlog.name);
 
-        this.metaTagService.updateTag({
-          property: 'description',
-          content: foundBlog.name,
-        });
+  //       this.metaTagService.updateTag({
+  //         property: 'description',
+  //         content: foundBlog.name,
+  //       });
 
-        this.metaTagService.updateTag({
-          property: 'og:description',
-          content: foundBlog.name,
-        });
-        this.metaTagService.updateTag({
-          property: 'og:image',
-          content: this.Media + foundBlog.blogImage,
-        });
-        this.metaTagService.updateTag({
-          property: 'og:url',
-          content: completeUrl,
-        });
-      } else {
-        this.not_text = 'Blog not found';
-      }
-    });
-  }
+  //       this.metaTagService.updateTag({
+  //         property: 'og:description',
+  //         content: foundBlog.name,
+  //       });
+  //       this.metaTagService.updateTag({
+  //         property: 'og:image',
+  //         content: this.Media + foundBlog.blogImage,
+  //       });
+  //       this.metaTagService.updateTag({
+  //         property: 'og:url',
+  //         content: completeUrl,
+  //       });
+  //     } else {
+  //       this.not_text = 'Blog not found';
+  //     }
+  //   });
+  // }
 }

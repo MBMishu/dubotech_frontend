@@ -32,9 +32,6 @@ export class BlogPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.Media = this.service.getMediaUrl();
-    this.refreshList();
-
     this.title.setTitle('Dubotech||Blog');
 
     const currentUrl = this.location.path(true);
@@ -51,17 +48,9 @@ export class BlogPageComponent implements OnInit {
     if (picPath === 'https://bracu-duburi.com/assets/img/v4.png') {
       return picPath;
     } else {
-      const baseUrl = this.Media; // Replace with your actual base URL
+      // const baseUrl = this.Media; // Replace with your actual base URL
+      const baseUrl = 'https://ik.imagekit.io/dubotech'; // Replace with your actual base URL
       return `${baseUrl}/${picPath}`;
     }
-  }
-
-  refreshList() {
-    this.spinner.show();
-
-    this.service.getBlog().subscribe((data) => {
-      this.spinner.hide();
-      this.List = data['data'];
-    });
   }
 }
