@@ -26,7 +26,7 @@ export class SponsorComponent {
         items: 4,
       },
       940: {
-        items: 6,
+        items: 7,
       },
     },
     nav: false,

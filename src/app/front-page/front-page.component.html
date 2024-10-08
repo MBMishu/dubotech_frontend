@@ -1,51 +1,33 @@
-<div
-  class="relative bg-gray-700 isolate min-h-screen flex items-center justify-start"
->
-  <video
-    autoplay
-    loop
-    playsinline
-    [muted]="true"
-    [attr.poster]="
+<div class="relative bg-gray-700 isolate min-h-screen flex items-center justify-start">
+    <video autoplay loop playsinline [muted]="true" [attr.poster]="
       'https://ik.imagekit.io/dubotech/assets/img/ready.png?updatedAt=1722379408105'
-    "
-    class="absolute top-0 left-0 w-full h-full object-cover"
-    preload="none"
-  >
+    " class="absolute top-0 left-0 w-full h-full object-cover" preload="none">
     <source
       src="https://ik.imagekit.io/dubotech/assets/video/tuna_2.mp4?updatedAt=1719836491951"
       type="video/mp4"
     />
   </video>
-  <div class="absolute inset-0 bg-black opacity-70"></div>
-  <div
-    class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"
-  >
-    <div class="">
-      <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-        Discover <br />
-        underwater possibilities <br />
-        with Dubotech.
-      </h1>
-      <p class="mt-6 font-thin leading-8 text-white">
-        Dubotech: Leaders in underwater inspection and exploration, unveiling
-        the mysteries of the deep. Join us to redefine exploration and uncover
-        the breathtaking beauty beneath the waves.
-      </p>
+    <div class="absolute inset-0 bg-black opacity-70"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div class="">
+            <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">
+                Discover <br /> underwater possibilities <br /> with Dubotech.
+            </h1>
+            <p class="mt-6 font-thin leading-8 text-white">
+                Dubotech: Leaders in underwater inspection and exploration, unveiling the mysteries of the deep. Join us to redefine exploration and uncover the breathtaking beauty beneath the waves.
+            </p>
 
-      <div class="mt-6">
-        <a
-          routerLink="/"
-          fragment="contact"
-          matTooltip="Click to Contact Us"
-          class="px-6 py-2.5 text-xl font-medium text-white border rounded-full bg-blue-800"
-          >Contact Us <span aria-hidden="true">→</span></a
+            <div class="mt-6">
+                <a routerLink="/" fragment="contact" matTooltip="Click to Contact Us" class="px-6 py-2.5 text-xl font-medium text-white border rounded-full bg-blue-800">Contact Us <span aria-hidden="true">→</span></a
         >
       </div>
     </div>
   </div>
 </div>
 
+<div class="relative overflow-hidden">
+  <app-sponsor></app-sponsor>
+</div>
 <!-- dummy section starts -->
 <div class="relative overflow-hidden">
   <!-- Content -->
@@ -142,8 +124,7 @@
 <!-- dummy section ends -->
 <div class="relative overflow-hidden">
   <!-- Content -->
-
-  <div
+  <!-- <div
     class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-16 lg:max-w-7xl lg:px-8 relative"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -171,139 +152,92 @@
               >
                 <i class="fas fa-hand-point-right"></i> Click Here to Watch
               </a>
-            </p>
-          </div>
-
-          <!-- <div class="p-4 bg-blue-800 rounded-b-lg">
-            <a
-              class="venobox text-white text-xl font-semibold"
-              data-autoplay="true"
-              data-vbtype="video"
-              [href]="
-                'https://bongobd.com/watch/fR3cDgJ5SyO?contentUuid=c61551bd-2599-4d50-84fc-f9d9c428e54e'
-              "
-            >
-              <i class="fas fa-hand-point-right"></i> Click Here to Watch
-            </a>
-          </div> -->
-        </div>
-      </div>
-      <div class="md:col-span-1 my-auto">
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
-          <div class="col-span-1">
-            <div class="embed-container rounded-xl">
-              <iframe
-                title="Dubotech"
-                src="https://www.youtube.com/embed/A5-AGYEZduY?si=wHZHoYyiuKVozi70"
-                frameborder="0"
-                allowfullscreen
-              ></iframe>
+                </p>
             </div>
-          </div>
+
+
         </div>
-      </div>
     </div>
-  </div>
-  <!-- who are we -->
-  <div class="bg-gray-100">
-    <div
-      class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 relative"
-    >
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div class="md:col-span-4 md:order-2 my-auto">
-          <div class="grid grid-cols-2 gap-4">
+    <div class="md:col-span-1 my-auto">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
             <div class="col-span-1">
-              <div class="relative">
-                <div class="shadow-lg">
-                  <img
-                    class="w-full object-cover rounded-lg"
-                    [defaultImage]="
-                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
-                    "
-                    lazyLoad="https://ik.imagekit.io/dubotech/assets/img/resouce_2.png?updatedAt=1722304163932"
-                  />
+                <div class="embed-container rounded-xl">
+                    <iframe title="Dubotech" src="https://www.youtube.com/embed/A5-AGYEZduY?si=wHZHoYyiuKVozi70" frameborder="0" allowfullscreen></iframe>
                 </div>
-              </div>
             </div>
-            <div class="col-span-1">
-              <div class="relative">
-                <div class="shadow-lg">
-                  <img
-                    class="w-full object-cover rounded-lg"
-                    [defaultImage]="
-                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
-                    "
-                    lazyLoad="https://ik.imagekit.io/dubotech/assets/img/infrastructer_2.png?updatedAt=1722304163977"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="col-span-2">
-              <div class="relative">
-                <div class="shadow-lg">
-                  <img
-                    class="w-full object-cover rounded-lg"
-                    [defaultImage]="
-                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
-                    "
-                    lazyLoad="https://ik.imagekit.io/dubotech/assets/img/rover.png?updatedAt=1724791800045"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="col-span-1">
-              <div class="col-span-1 relative">
-                <div class="shadow-lg">
-                  <img
-                    class="w-full object-cover rounded-lg"
-                    [defaultImage]="
-                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
-                    "
-                    lazyLoad="https://ik.imagekit.io/dubotech/assets/img/maritime_2.png?updatedAt=1722304163846"
-                  />
-                </div>
-              </div>
-            </div>
-            <div class="col-span-1">
-              <div class="col-span-1 relative">
-                <div class="shadow-lg">
-                  <img
-                    class="w-full object-cover rounded-lg"
-                    [defaultImage]="
-                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
-                    "
-                    lazyLoad="https://ik.imagekit.io/dubotech/assets/img/ready.png?updatedAt=1722379408105"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="md:col-span-8 md:order-1 my-auto">
-          <h1 class="font-bold text-4xl text-blue-800">Who are we?</h1>
-          <div class="max-w-xl">
-            <p class="text-xl text-gray-800 text-justify">
-              We're Dubotech, leading the charge in technology with a fiery
-              passion for exploration. Our team is made up of brilliant minds
-              committed to pushing boundaries and shaping the future.
-            </p>
-            <p class="text-xl text-gray-800 text-justify mt-5">
-              Dubotech is at the forefront of technological advancement,
-              steering into uncharted territories and reshaping the landscape of
-              deep tech solutions. Specializing in cutting-edge underwater
-              technology and autonomous systems, we are driven by a passion for
-              pushing the limits of what technology can achieve. We craft
-              autonomous underwater vehicles that delve into the mysteries of
-              the deep, offering precision and efficiency in underwater
-              exploration. From robotics to artificial intelligence, our
-              solutions are designed to operate seamlessly, empowering
-              industries with autonomous capabilities.
-            </p>
-          </div>
+    </div>
+</div>
+</div> -->
+<!-- who are we -->
+<div class="bg-gray-100">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-8 lg:max-w-7xl lg:px-8 relative">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+            <div class="md:col-span-4 md:order-2 my-auto">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-1">
+                        <div class="relative">
+                            <div class="shadow-lg">
+                                <img class="w-full object-cover rounded-lg" [defaultImage]="
+                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                    " lazyLoad="https://ik.imagekit.io/dubotech/assets/img/resouce_2.png?updatedAt=1722304163932" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <div class="relative">
+                            <div class="shadow-lg">
+                                <img class="w-full object-cover rounded-lg" [defaultImage]="
+                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                    " lazyLoad="https://ik.imagekit.io/dubotech/assets/img/infrastructer_2.png?updatedAt=1722304163977" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="relative">
+                            <div class="shadow-lg">
+                                <img class="w-full object-cover rounded-lg" [defaultImage]="
+                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                    " lazyLoad="https://ik.imagekit.io/dubotech/assets/img/rover.png?updatedAt=1724791800045" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <div class="col-span-1 relative">
+                            <div class="shadow-lg">
+                                <img class="w-full object-cover rounded-lg" [defaultImage]="
+                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                    " lazyLoad="https://ik.imagekit.io/dubotech/assets/img/maritime_2.png?updatedAt=1722304163846" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <div class="col-span-1 relative">
+                            <div class="shadow-lg">
+                                <img class="w-full object-cover rounded-lg" [defaultImage]="
+                      'https://ik.imagekit.io/dubotech/assets/img/default.png'
+                    " lazyLoad="https://ik.imagekit.io/dubotech/assets/img/ready.png?updatedAt=1722379408105" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-8 md:order-1 my-auto">
+                <h1 class="font-bold text-4xl text-blue-800">Who are we?</h1>
+                <div class="max-w-xl">
+                    <p class="text-xl text-gray-800 text-justify">
+                        We're Dubotech, leading the charge in technology with a fiery passion for exploration. Our team is made up of brilliant minds committed to pushing boundaries and shaping the future.
+                    </p>
+                    <p class="text-xl text-gray-800 text-justify mt-5">
+                        Dubotech is at the forefront of technological advancement, steering into uncharted territories and reshaping the landscape of deep tech solutions. Specializing in cutting-edge underwater technology and autonomous systems, we are driven by a passion for
+                        pushing the limits of what technology can achieve. We craft autonomous underwater vehicles that delve into the mysteries of the deep, offering precision and efficiency in underwater exploration. From robotics to artificial intelligence,
+                        our solutions are designed to operate seamlessly, empowering industries with autonomous capabilities.
+                    </p>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
+        <!-- <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
       <div class="col-span-1 relative">
         <div class="shadow-lg">
           <img
@@ -356,12 +290,12 @@
       </div>
     </div> -->
     </div>
-  </div>
-  <!-- inspection -->
-  <app-inspection-banner></app-inspection-banner>
+</div>
+<!-- inspection -->
+<app-inspection-banner></app-inspection-banner>
 
-  <!-- sponsor -->
-  <app-sponsor></app-sponsor>
+<!-- sponsor -->
+<app-sponsor></app-sponsor>
 
-  <app-rover-overview></app-rover-overview>
+<app-rover-overview></app-rover-overview>
 </div>
